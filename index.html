@@ -1,0 +1,105 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ariel Trading</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #081521;
+      color: #fff;
+    }
+    header {
+      padding: 22px;
+      background: #102334;
+      border-bottom: 2px solid #22c55e;
+    }
+    header h1 { margin: 0; color: #22c55e; }
+    header p { color: #b7c7d5; }
+    main { max-width: 850px; margin: auto; padding: 20px; }
+    .card {
+      background: #102334;
+      padding: 20px;
+      border-radius: 14px;
+      margin: 16px 0;
+      border: 1px solid #254254;
+    }
+    .balance { font-size: 30px; color: #22c55e; }
+    button {
+      padding: 12px 18px;
+      background: #22c55e;
+      color: #081521;
+      border: 0;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    input {
+      width: 100%;
+      padding: 12px;
+      margin: 12px 0;
+      border-radius: 8px;
+      border: 1px solid #496173;
+    }
+    footer { text-align: center; padding: 24px; color: #b7c7d5; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>ARIEL TRADING</h1>
+    <p>Learn the markets. Practise responsibly.</p>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>Welcome to Ariel Trading</h2>
+      <p>Explore market concepts in a safe virtual trading environment.</p>
+    </section>
+
+    <section class="card">
+      <h2>Demo Account</h2>
+      <p>Virtual balance</p>
+      <div class="balance" id="balance">$10,000.00</div>
+      <label for="amount">Practice amount ($)</label>
+      <input id="amount" type="number" min="1" max="1000" value="100">
+      <button onclick="practice()">Try demo trade</button>
+      <p id="message">No real money is used.</p>
+    </section>
+
+    <section class="card">
+      <h2>About Us</h2>
+      <p>Ariel Trading is a learning project for exploring financial markets.</p>
+      <p>This demo does not provide live prices or execute real trades.</p>
+    </section>
+  </main>
+
+  <footer>© 2026 Ariel Trading · Virtual trading demo</footer>
+
+  <script>
+    let balance = 10000;
+
+    function practice() {
+      const amount = Number(document.getElementById("amount").value);
+      const message = document.getElementById("message");
+
+      if (!Number.isFinite(amount) || amount <= 0 || amount > balance) {
+        message.textContent = "Enter a valid amount within your demo balance.";
+        return;
+      }
+
+      balance -= amount;
+      document.getElementById("balance").textContent =
+        "$" + balance.toLocaleString("en-US", {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2
+        });
+      message.textContent =
+        "Demo practice recorded. No real money was used.";
+    }
+  </script>
+</body>
+</html>
